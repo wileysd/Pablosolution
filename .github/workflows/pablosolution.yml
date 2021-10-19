@@ -1,0 +1,236 @@
+https://chrome.google.com/webstore/detail/aws-ssh-rdp-links/hgholhakdlbjengncomcankfpfkjdpdh
+
+Adds SSH or RDP links to your AWS console
+This chrome extension looks at the Platform field and if it says 'windows' then it adds RDP links to all the applicable fields that have IPs or hostnames. Otherwise, it adds SSH links to all the fields.
+
+RDP Link Style
+MS uses a link like rdp://full%20address=s:HOST:3389&username=s:USER - this works for the Microsoft RDP clients. Full documentation is here: https://technet.microsoft.com/en-us/library/dn690096.aspx
+CoRD uses a link like rdp://USER@HOST - and is good for OSX's CoRD. Full documentation here: https://github.com/dorianj/CoRD/wiki/Command-Line-Use
+Thanks to
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@wileysd 
+abdorefaee44
+/
+AWS-RDP-1
+Public
+forked from gvictim-maker/AWS-RDP
+0
+035
+Code
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+ 1 branch
+ 0 tags
+This branch is even with gvictim-maker:main.
+Latest commit
+RDP-DEV Update rdp.yml
+b830529
+on Sep 10
+Git stats
+ 18 commits
+Files
+Type
+Name
+Latest commit message
+Commit time
+.github/workflows
+Update rdp.yml
+last month
+README.md
+Update README.md
+last month
+loop.ps1
+Add files via upload
+last month
+ngrok-stable-windows-amd64.zip
+Add files via upload
+last month
+start.bat
+Add files via upload
+last month
+README.md
+Windows2019 AWS-RDP-US
+Create a free VPS with 2cpu-7gb Ram FREE with Github:
+
+Click Fork in the right corner of the screen to save it to your Github.
+
+Visit https://dashboard.ngrok.com to get NGROK_AUTH_TOKEN
+
+In Github go to Settings> Secrets> New repository secret
+
+In Name: enter NGROK_AUTH_TOKEN
+
+In Value: visit https://dashboard.ngrok.com/auth/your-authtoken Copy and Paste Your Authtoken into
+
+Press Add secret
+
+Go to Action> AWS-RDP> Run workflow
+
+Reload the page and press AWS-RDP> build
+
+Press the down arrow on Connect To Your RPD to get IP, User, Password.
+
+IF MY REPO GOT DELETED,ON YOUR GITHUB GO TO .github/workflows > main.yml AND EDIT NEW LINK TO YOUR REPO. Include ALL Prerequisite in Files FOLDER
+
+ɴᴏ ɪʟʟᴇɢᴀʟ ᴀᴄᴛɪᴠɪᴛɪᴇs ᴀʟʟᴏᴡᴇᴅ
+Watch Video Guide Here
+
+
+About
+No description, website, or topics provided.
+Resources
+ Readme
+Releases
+No releases published
+Packages
+No packages published
+Languages
+Batchfile
+93.7%
+ 
+PowerShell
+6.3%
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+AWS SSH, SSM and RDP Links
+https://chrome.google.com/webstore/detail/aws-ssh-rdp-links/hgholhakdlbjengncomcankfpfkjdpdh
+
+Adds SSH, SSM or RDP links to your AWS console
+This chrome extension looks at the Platform field and if it says 'windows' then it adds RDP links to all the applicable fields that have IPs or hostnames. Otherwise, it adds SSM to the Instance ID field and SSH links to all the IP and hostname fields.
+
+RDP Link Style
+MS uses a link like rdp://full%20address=s:HOST:3389&username=s:USER - this works for the Microsoft RDP clients. Full documentation is here: https://technet.microsoft.com/en-us/library/dn690096.aspx
+CoRD uses a link like rdp://USER@HOST - and is good for OSX's CoRD. Full documentation here: https://github.com/dorianj/CoRD/wiki/Command-Line-Use
+AWS CloudFormation "Deploy CloudFormation Stack" Action for GitHub Actions
+Package License: MIT
+
+Deploys AWS CloudFormation Stacks.
+
+Usage
+- name: Deploy to AWS CloudFormation
+  uses: aws-actions/aws-cloudformation-github-deploy@v1
+  with:
+    name: MyStack
+    template: myStack.yaml
+    parameter-overrides: "MyParam1=myValue,MyParam2=${{ secrets.MY_SECRET_VALUE }}"
+The action can be passed a CloudFormation Stack name and a template file. The template file can be a local file existing in the working directory, or a URL to template that exists in an Amazon S3 bucket. It will create the Stack if it does not exist, or create a Change Set to update the Stack. An update fails by default when the Change Set is empty. Setting no-fail-on-empty-changeset: "1" will override this behavior and not throw an error.
+
+See action.yml for the full documentation for this action's inputs and outputs.
+
+You can learn more about AWS CloudFormation
+
+Credentials and Region
+This action relies on the default behavior of the AWS SDK for Javascript to determine AWS credentials and region. Use the aws-actions/configure-aws-credentials action to configure the GitHub Actions environment with environment variables containing AWS credentials and your desired region.
+
+We recommend following Amazon IAM best practices for the AWS credentials used in GitHub Actions workflows, including:
+
+Do not store credentials in your repository's code. You may use GitHub Actions secrets to store credentials and redact credentials from GitHub Actions workflow logs.
+Create an individual IAM user with an access key for use in GitHub Actions workflows, preferably one per repository. Do not use the AWS account root user access key.
+Grant least privilege to the credentials used in GitHub Actions workflows. Grant only the permissions required to perform the actions in your GitHub Actions workflows. See the Permissions section below for the permissions required by this action.
+Rotate the credentials used in GitHub Actions workflows regularly.
+Monitor the activity of the credentials used in GitHub Actions workflows.
+Permissions
+This action requires the following minimum set of permissions:
+
+We recommend to read AWS CloudFormation Security Best Practices
+
+{
+    "Version":"2012-10-17",
+    "Statement":[{
+        "Effect":"Allow",
+        "Action":[
+            "cloudformation:*"
+        ],
+        "Resource":"*"
+    },
+    {
+        "Effect":"Deny",
+        "Action":[
+            "cloudformation:DeleteStack"
+        ],
+        "Resource":"arn:aws:cloudformation:us-east-1:123456789012:stack/MyProductionStack/*"
+    }]
+}
+The policy above prevents the stack to be deleted by a policy for production
+
+Example
+You want to run your microservices with Amazon Elastic Kubernetes Services and leverage the best-practices to run the cluster? Using this GitHub Action you can customize and deploy the modular and scalable Amazon EKS architecture provided in an AWS Quick Start to your AWS Account. The following workflow enables you to create and update a Kubernetes cluster using a manual workflow trigger.
+
+You only have to create an Amazon EC2 key pair to run this workflow.
+
+name: Deploy Cluster
+
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region'
+        required: true
+        default: 'eu-west-1'
+       keypair:
+        description: 'SSH Key Pair'
+        required: true
+
+jobs:
+  cluster:
+    name: Deploy stack to AWS
+    runs-on: ubuntu-latest
+    outputs:
+      env-name: ${{ steps.env-name.outputs.environment }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      id: creds
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ github.event.inputs.region}}
+
+    - name: Configure environment name
+      id: env-name
+      env:
+        REPO: ${{ github.repository }}
+      run: |
+        ENVIRONMENT=`echo $REPO | tr "/" "-"`
+        echo "Environment name: $ENVIRONMENT"
+        echo "::set-output name=environment::$ENVIRONMENT"
+
+    - name: Deploy Amazon EKS Cluster
+      id: eks-cluster
+      uses: aws-actions/aws-cloudformation-github-deploy@master
+      with:
+        name: ${{ steps.env-name.outputs.environment }}-cluster
+        template: https://s3.amazonaws.com/aws-quickstart/quickstart-amazon-eks/templates/amazon-eks-master.template.yaml
+        no-fail-on-empty-changeset: "1"
+        parameter-overrides: >-
+          AvailabilityZones=${{ github.event.inputs.region }}a,
+          AvailabilityZones=${{ github.event.inputs.region }}c,
+          KeyPairName=${{ github.event.inputs.keypair }},
+          NumberOfAZs=2,
+          ProvisionBastionHost=Disabled,
+          EKSPublicAccessEndpoint=Enabled,
+          EKSPrivateAccessEndpoint=Enabled,
+          RemoteAccessCIDR=0.0.0.0/0
